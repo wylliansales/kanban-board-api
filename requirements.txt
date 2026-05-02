@@ -2,3 +2,4 @@ Flask
 PyJWT
 Werkzeug
 flask-restx
+Flask-CORS

@@ -1,8 +1,9 @@
 from flask import Flask, jsonify
 from datetime import datetime
-from flask_restx import Api # Importar Api do flask_restx
+from flask_restx import Api
+from flask_cors import CORS # Importar CORS
 
-# Importar os Namespaces dos controladores (serão definidos em breve)
+# Importar os Namespaces dos controladores
 from controllers.user_controller import user_ns
 from controllers.column_controller import column_ns
 from controllers.task_controller import task_ns
@@ -10,6 +11,8 @@ from controllers.task_controller import task_ns
 from config.database_setup import create_tables
 
 app = Flask(__name__)
+# Inicializar CORS para permitir todas as origens e todos os métodos
+CORS(app, resources={r"/*": {"origins": "*"}}, methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
 
 create_tables()
 
