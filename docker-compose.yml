@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  api:
+    # Constrói a imagem a partir do Dockerfile no diretório atual
+    build: .
+    # Nome do container
+    container_name: kanban-board-api
+    # Mapeia a porta 80 do host para a porta 5000 do container
+    ports:
+      - "80:5000"
+    # Mapeia o diretório atual do projeto para o diretório /app dentro do container
+    # Isso permite que as alterações nos arquivos sejam refletidas em tempo real
+    volumes:
+      - .:/app
+    # Define variáveis de ambiente para o container
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_DEBUG=1 # Ativa o modo de depuração e o auto-reloader do Flask
+      - FLASK_RUN_HOST=0.0.0.0
